@@ -184,6 +184,6 @@ body.wait .click {
 		opacity: 1;
 	}
 	100% {
-		opacity: .25;
+		opacity: .15;
 	}
 }
