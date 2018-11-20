@@ -1,0 +1,189 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+* {
+	margin: 0;
+	padding: 0;
+	cursor: default;
+	box-sizing: border-box;
+	cursor: default;
+	outline: none;
+}
+
+*:focus {
+	outline: none;
+}
+
+::-moz-selection {
+	color: hsl(330, 100%, 60%);
+}
+
+::selection {
+	color: hsl(330, 100%, 60%);
+}
+
+body {
+	font-family: Montserrat, sans-serif;
+	margin: 2rem;
+	color: hsl(0, 0%, 0%);
+	background: hsl(331, 26%, 45%);
+}
+
+#step {
+	position: fixed;
+	z-index: 0;
+	bottom: 0;
+	right: 1vw;
+	font-size: 60vh;
+	font-weight: 700;
+	color: hsl(330, 25%, 15%);
+	-webkit-transition: 2s;
+	transition: 2s;
+}
+
+#step::before {
+	content: 'Step';
+	position: absolute;
+	z-index: 1;
+	top: 35%;
+	right: 2vw;
+	font-size: 20vh;
+	font-weight: 700;
+	color: hsl(330, 25%, 5%);
+}
+
+#step::after {
+	content: 'of 4';
+	position: absolute;
+	z-index: 1;
+	top: 65%;
+	left: -2rem;
+	font-size: 10vh;
+	font-weight: 700;
+	color: hsl(330, 25%, 20%);
+}
+
+.sleep {
+	opacity: 0;
+}
+
+.rest {
+	height: 0;
+	opacity: 0;
+}
+
+.wake {
+	opacity: 1;
+}
+
+p {
+	position: relative;
+	z-index: 2;
+	font-family: Montserrat, sans-serif;
+	font-size: 1.5rem;
+	line-height: 2rem;
+	height: 5rem;
+	-webkit-transition: 1s ease-out .5s;
+	transition: 1s ease-out .5s;
+}
+
+#type {
+	height: auto;
+	margin: 2rem 0;
+}
+
+.collapsed {
+	height: 0;
+}
+
+[contenteditable] {
+	color: hsl(330, 10%, 50%);
+	border: 0 solid hsl(330, 10%, 50%);
+	border-width: 0 .1rem;
+	padding: 0 1em;
+	-webkit-transition: 1s ease-out;
+	transition: 1s ease-out;
+}
+
+[contenteditable]:focus {
+	color: hsl(30, 100%, 75%);
+	border-color: hsl(330, 10%, 50%);
+}
+
+input[type=button] {
+	position: relative;
+	top: 0rem;
+	font-family: Montserrat, sans-serif;
+	font-size: 2rem;
+	font-weight: 700;
+	color: hsl(330, 10%, 25%);
+	background: transparent;
+	border: .2rem solid hsl(330, 10%, 25%);
+	border-radius: .75rem;
+	padding: 0.5rem 1rem;
+	box-shadow: 0 0 0 hsl(330, 10%, 5%);
+	-webkit-transition: 1s ease-out;
+	transition: 1s ease-out;
+	cursor: pointer;
+}
+
+input[type=button]:hover {
+	top: -.5rem;
+	color: hsl(30, 100%, 75%);
+	border: .2rem solid hsl(30, 100%, 75%);
+	box-shadow: 0 .5rem 0.5rem hsl(330, 10%, 5%);
+}
+
+input[type=text],
+input[type=email] {
+	font-family: Montserrat, sans-serif;
+	font-size: 1.5rem;
+	line-height: 2.5rem;
+	color: hsl(30, 100%, 75%);
+	background: transparent;
+	border: 0 solid hsl(330, 10%, 25%);
+	border-width: 0 0 .1rem 0;
+	width: 3em;
+	-webkit-transition: 1s ease-out;
+	transition: 1s ease-out;
+}
+
+.click {
+	cursor: pointer;
+}
+
+body.wait .click {
+	cursor: default;
+}
+
+.pulse {
+	-webkit-animation: pulse 2s infinite linear;
+	        animation: pulse 2s infinite linear;
+}
+
+.pulse:hover {
+	-webkit-animation: none;
+	        animation: none;
+}
+
+@-webkit-keyframes pulse {
+	0% {
+		opacity: .25;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: .25;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		opacity: .25;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: .15;
+	}
+}
