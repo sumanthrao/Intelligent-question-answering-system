@@ -1,6 +1,11 @@
 /*basic reset*/
 * {margin: 0; padding: 0;}
 
+/* style for DIV in the quiz*/
+
+
+
+
 html {
   height: 100%;
   /*Image only BG fallback*/
@@ -485,3 +490,9 @@ display: block;
   margin-top: 5px;
   font-size: 10px;
 }
+
+
+
+
+
+/**********************************************************/
