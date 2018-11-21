@@ -411,147 +411,38 @@ label .glyphicon {
 
 <form class="steps" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
   <ul id="progressbar">
-    <li class="active">Intro</li>
-    <li>Question 1</li>
-    <li>Question 2</li>
-    <li>Question 3</li>
-    <li>Question 4</li>
+    
   </ul>
 
 
 
   <!-- USER INFORMATION FIELD SET --> 
+  {% for question in questions %}
   <fieldset>
-    <h2 class="fs-title">Basic Information</h2>
-    <h3 class="fs-subtitle">We just need some basic information to begin your scoring</h3>
-    <!-- Begin What's Your First Name Field -->
-        <div class="hs_firstname field hs-form-field">
-            <input id="edit-submitted-cultivation-amount-1" class="form-text hs-input" name="average_gift_size_in_year_1" required="required" size="60" maxlength="128" type="text" value="" placeholder="" data-rule-required="true" data-msg-required="Please enter something">
-        </div>
-    <!-- End What's Your First Name Field -->
+    <h2 class="fs-title" value="{{question[0]}}">{{question[0]}}</h2>
 
+    <div class="quiz" id="quiz" data-toggle="buttons">
+        {% for options in question[1:] %}
+        <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="{{loop.counter}}" value="{{question[0]}}:{{options}}">{{options}}</label>
+        {% endfor %}
+    </div>
   
     <!-- End Total Number of Constituents in Your Database Field -->
-    <input type="button" data-page="1" name="next" class="next action-button" value="Next" />
+    <input id="submit" type="submit" data-page="1" name="next" class="next action-button" value="Next" />
     <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i class="question-log fa fa-question-circle"></i> What Is This?</div>
   </fieldset>
 
+{% endfor %}
 
 
-  <!-- ACQUISITION FIELD SET -->  
-  <fieldset>
-        <h2 class="fs-title">Glad You are interested!</h2>
-        <h3 class="fs-subtitle">How has your day been?</h3>
-          <!-- Begin Average Gift Size in Year 1 Field -->
-            <div class="form-item webform-component webform-component-textfield hs_average_gift_size_in_year_1 field hs-form-field" id="edit-submitted-cultivation-amount-1 average_gift_size_in_year_1-99a6d115-5e68-4355-a7d0-529207feb0b3_3256">
-            
-              <label for="edit-submitted-cultivation-amount-1 average_gift_size_in_year_1-99a6d115-5e68-4355-a7d0-529207feb0b3_3256">Are you feeling good?</label>
-    
-              <div class="quiz" id="quiz" data-toggle="buttons">
-                <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer1" value="1">1 One</label>
-                <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer1" value="2">2 Two</label>
-                <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer1" value="3">3 Three</label>
-                <label class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer1" value="4">4 Four</label>
-            </div>
-              <span class="error1" style="display: none;">
-                  <i class="error-log fa fa-exclamation-triangle"></i>
-              </span>
-            </div>
-            <!-- End Average Gift Size in Year 1 Field -->
-        <input type="button" data-page="2" name="previous" class="previous action-button" value="Previous" />
-        <input type="button" data-page="2" id="sub" name="next" class="next action-button" value="Next" />
-        <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
-    
-  </fieldset>
-
-
-
-  <!-- Cultivation FIELD SET -->  
-  <fieldset>
-    <h2 class="fs-title">Keep going :)</h2>
-    <h3 class="fs-subtitle">How are you feeling?</h3>
-      <!-- Begin Average Gift Size in Year 1 Field -->
-        <div class="form-item webform-component webform-component-textfield hs_average_gift_size_in_year_1 field hs-form-field" id="edit-submitted-cultivation-amount-1 average_gift_size_in_year_1-99a6d115-5e68-4355-a7d0-529207feb0b3_3256">
-        
-          <label for="edit-submitted-cultivation-amount-1 average_gift_size_in_year_1-99a6d115-5e68-4355-a7d0-529207feb0b3_3256">Are you doing okay?</label>
-
-          <div class="quiz" id="quiz" data-toggle="buttons">
-            <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer2" value="1">1 One</label>
-            <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer2" value="2">2 Two</label>
-            <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer2" value="3">3 Three</label>
-            <label class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer2" value="4">4 Four</label>
-        </div>
-          <span class="error1" style="display: none;">
-              <i class="error-log fa fa-exclamation-triangle"></i>
-          </span>
-        </div>
-        <!-- End Average Gift Size in Year 1 Field -->
-    <input type="button" data-page="3" name="previous" class="previous action-button" value="Previous" />
-    <input type="button" data-page="3" name="next" id="sub" class="next action-button" value="Next" />
-    <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
-  </fieldset>
-
-
-
-  <!-- Cultivation2 FIELD SET --> 
-  <fieldset>
-    <h2 class="fs-title">Mental health is important!</h2>
-    <h3 class="fs-subtitle">.....</h3>
-              <!-- Begin Total Giving In Year 1 Field -->
-        <div class="form-item webform-component webform-component-textfield" id="webform-component-cultivation--amount-3 hs_total_giving_in_year_1 field hs-form-field">
-        
-          <label for=" edit-submitted-cultivation-amount-3 total_giving_in_year_1-99a6d115-5e68-4355-a7d0-529207feb0b3_4902">Have you ever felt low?</label>
-
-          <div class="quiz" id="quiz" data-toggle="buttons">
-            <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer3" value="1">1 One</label>
-            <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer3" value="2">2 Two</label>
-            <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer3" value="3">3 Three</label>
-            <label class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer3" value="4">4 Four</label>
-        </div>
-          <span class="error1" style="display: none;">
-              <i class="error-log fa fa-exclamation-triangle"></i>
-          </span>
-        </div>
-        <!-- End Total Giving In Year 1 Field -->
-    <input type="button" data-page="4" name="previous" class="previous action-button" value="Previous" />
-    <input type="button" data-page="4" name="next" id="sub" class="next action-button" value="Next" />
-    <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
-  </fieldset>
-
-
-
-  <!-- RETENTION FIELD SET -->  
-  <fieldset>
-    <h2 class="fs-title">You are almost done</h2>
-    <h3 class="fs-subtitle">last one</h3>
-        <!-- Begin Total Number of Donors Who Gave in Year 1 Field -->
-          <div class="form-item webform-component webform-component-textfield hs_number_of_donors_in_year_1 field hs-form-field" id="webform-component-retention--amount-1"> 
-        
-          <label for=" edit-submitted-retention-amount-1 number_of_donors_in_year_1-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Would you recommend this to your peers?</label>
-
-          <div class="quiz" id="quiz" data-toggle="buttons">
-            <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer4" value="1">1 One</label>
-            <label class="element-animation2 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer4" value="2">2 Two</label>
-            <label class="element-animation3 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer4" value="3">3 Three</label>
-            <label class="element-animation4 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="q_answer4" value="4">4 Four</label>
-        </div>
-          <span class="error1" style="display: none;">
-              <i class="error-log fa fa-exclamation-triangle"></i>
-          </span>
-          </div>
-        <!-- End Total Number of Donors Who Gave in Year 1 Field-->
-
-
-   
-
-     <input type="button" data-page="5" name="previous" class="previous action-button" value="Previous" />
-    <input id="submit" class="hs-button primary large action-button next" id="sub" type="submit" value="Submit">
-    <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
-</fieldset>
 
   <fieldset>
+
     <h2 class="fs-title">That's great! You are done!</h2>
     <h3 class="fs-subtitle"> Your score and analysis</h3>
+    <input type="button" name="Get Results" class="next action-button" value="Submit"/>
+    <a id="mysubmit" class="tabs" href="#" >Get my results</a>
+    
     <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
   </fieldset>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -568,19 +459,24 @@ label .glyphicon {
 </body>
 <script type="text/javascript">
     
-        var arr=new Array();
-        var obj={}
+        arr=new Array();
         $("label.btn").on('click',function () {
         
           var choice = $(this).find('input:radio').val();
           var name=$(this).find('input:radio').attr('name');
-          console.log(name);
-          obj[name]=choice;
-          console.log(obj);
+          arr.push(choice)
+          console.log(choice);
+          
           //This obj is the list of answers!!
       
         });
-       
+
+        $(".tabs").click(function() {
+            var json = JSON.stringify( arr );
+            $(this).attr("href","\get_depr_results?array="+json);
+            window.location=document.getElementById('mysubmit').href;
+        });
+
     
     </script>
 
