@@ -1,1 +1,104 @@
-<h1>Welcome to the Results!</h1>
+<h1 style="text-align: center;color: brown;font-family: fantasy;">Welcome to the Results!</h1>
+<!DOCTYPE html>
+<html>
+<title>Results</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body onload="move()">
+        <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;color:brown; text-align: center">Your emotion %</h2>
+        <div style="margin-left: 50px;"id="donutchart">
+        </div>
+<div style="margin-right: 700px; margin-left:100px;margin-top: 50px;" >
+<h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;color:brown;">Happy</h2>
+<div style="width:100%; height:4%;" class="w3-light-grey">
+
+<div id="myBar" class="w3-container w3-green" style="width:0%;height:100%;align-self: center;">0%</div>
+</div>
+<br>
+<h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;color:brown;">Sad</h2>
+<div style="width:100%; height:4%;" class="w3-light-grey">
+
+<div id="myBar1" class="w3-container w3-red" style="width:0%; height:100%">0%</div>
+</div>
+
+</div>
+
+
+
+
+<br>
+
+</body>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+
+
+
+
+
+function move() {
+  var elem = document.getElementById("myBar");   
+  var width = 0;
+  var id = setInterval(frame, 10);
+  num="{{output['happy']}}"*100;
+  function frame() {
+    if (width >=num) {
+      clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+      elem.innerHTML = width * 1  + '%';
+    }
+  }
+  move1();
+}
+
+
+function move1() {
+  var elem1 = document.getElementById("myBar1");   
+  var width = 0;
+  var id2 = setInterval(frame1, 10);
+  num1="{{output['sad']}}"*100
+
+  function frame1() {
+    if (width >= num1) {
+      clearInterval(id2);
+    } else {
+      width++; 
+      elem1.style.width = width + '%'; 
+      elem1.innerHTML = width * 1  + '%';
+    }
+  }
+  // Load google charts
+  var anger="{{emotion[0]['anger']}}"*100;
+console.log(anger);
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Emotion', '%'],
+  ['Anger', "{{emotion[0]['anger']}}"*100],
+  ['Sad', "{{emotion[0]['sadness']}}"*100],
+  ['Joy', "{{emotion[0]['joy']}}"*100],
+  ['Fear', "{{emotion[0]['fear']}}"*100],
+  ['Surprise',"{{emotion[0]['surprise']}}"*100]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'width':850, 'height':500,'pieHole':0.4,'legend':{position: 'left', textStyle: {color: 'brown', fontSize: 16}}};
+
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+  chart.draw(data, options);
+}
+
+}
+
+
+</script>
+
+</body>
+</html>
