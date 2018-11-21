@@ -18,15 +18,7 @@ def scrape_display(url):
             question.append(btn.text.strip()) 
     return question 
             
-
-question_list = []
-
-for i in range(1,29):
-    
-    url = "https://www.quizony.com/what-emotion-are-you-feeling-right-now/"+str(i)+".html"
-    q = scrape_display(url)
-    question_list.append(q)
     
 
-print(question_list)
+
 
