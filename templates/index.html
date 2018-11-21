@@ -9,10 +9,10 @@
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="favicon.ico">
 		<link href="https://fonts.googleapis.com/css?family=Nunito:400,700|Spectral:200" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="pater/pater.css" />
-		<link rel="stylesheet" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/normalize.css')}}" />
+		<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/demo.css')}}" />
+		<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='pater/pater.css')}}" />
+		<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}"/>
 		<script>document.documentElement.className = 'js';</script>
 	</head>
 	<body class="demo-1 loading">
@@ -81,12 +81,12 @@
 							<p id="pin_9"></p>
 						</form>
 						  
-						<script  src="js/index.js"></script>
+						<script  src="{{url_for('static',filename='js/index.js')}}"></script>
 			</div>
-			<script src="js/imagesloaded.pkgd.min.js"></script>
-			<script src="js/charming.min.js"></script>
-			<script src="js/anime.min.js"></script>
-			<script src="js/demo1.js"></script>
+			<script src="{{url_for('static',filename='js/imagesloaded.pkgd.min.js')}}"></script>
+			<script src="{{url_for('static',filename='js/charming.min.js')}}"></script>
+			<script src="{{url_for('static',filename='js/anime.min.js')}}"></script>
+			<script src="{{url_for('static',filename='js/demo1.js')}}"></script>
 			
 		</main>
 	</body>
