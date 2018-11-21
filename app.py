@@ -8,5 +8,9 @@ app._static_folder = os.path.join(os.getcwd(),"static")
 def index():
 	return route_index() 
 
+@app.route('/results', methods=["POST"])
+def results():
+	return route_result()
+
 if (__name__ == "__main__"):
     app.run(debug=True)
