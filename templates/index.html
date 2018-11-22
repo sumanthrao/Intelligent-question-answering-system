@@ -29,7 +29,7 @@
 				
 			  		$.ajax({
 							  type: "GET",
-							  url: "http://localhost:5001/suggest_emojis?text=" + text
+							  url: "http://192.168.0.21:5001/suggest_emojis?text=" + text
 						  }).done(function(o) {
 					$('#results').html("<div>Mood-o-meter</div></br>"+o);
 					console.log("done")

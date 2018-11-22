@@ -2,12 +2,202 @@ import os
 from flask import Flask, render_template
 from route import *
 from scraper import *
+from gevent import monkey
+
+monkey.patch_all()
+
+from flask import Flask, render_template, session, request, redirect, url_for
+from flask_socketio import SocketIO, emit, join_room
+from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
+import redis
+
 app = Flask(__name__)
+app.debug = True
+app.config['SECRET_KEY'] = 'nuttertools'
+#set up SQL alchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+db = SQLAlchemy(app)
+CORS(app)
+socketio = SocketIO(app)
 app._static_folder = os.path.join(os.getcwd(),"static")
+
+class User(db.Model):
+    """ Create user table"""
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    password = db.Column(db.String(80))
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def __str__(self):
+        return "username: " + self.username + "\n" + "password: " + self.password
+
+redis_store = redis.Redis(host="0.0.0.0")
 
 @app.route('/')
 def index():
 	return route_index() 
+
+@app.route('/new_login')
+def newlogincheck():
+    print("newlogincheck")
+    old_len = len(redis_store.lrange('logged_in_users', 0, -1))
+    while(len(redis_store.lrange('logged_in_users', 0, -1)) <= old_len):
+        if(len(redis_store.lrange('logged_in_users', 0, -1)) < old_len):
+            old_len = len(redis_store.lrange('logged_in_users', 0, -1))
+        else:
+            continue
+    print("new guy in",redis_store.lindex('logged_in_users',-1).decode())
+    return redis_store.lindex('logged_in_users',-1).decode()
+
+@app.route('/update_logout')
+def removefromcontacts():
+    print("removefromcontacts")
+    old_len = len(redis_store.lrange('logged_in_users', 0, -1))
+    old_list = redis_store.lrange('logged_in_users', 0, -1)
+    while( len(redis_store.lrange('logged_in_users', 0, -1))>=old_len):
+        if(len(redis_store.lrange('logged_in_users', 0, -1))>old_len):
+            old_len =len(redis_store.lrange('logged_in_users', 0, -1))
+            old_list = redis_store.lrange('logged_in_users', 0, -1)
+        else:
+            continue
+    
+    for user in old_list:
+        if(user not in redis_store.lrange('logged_in_users', 0, -1)):
+            print("logout")
+            print(user.decode())
+            return user.decode()
+
+    return ""
+
+
+@app.route('/to_chat')
+def chat():
+    return render_template('chat.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    # Register Form
+	if request.method == 'POST':
+		new_user = User(username=request.form['username'], password=request.form['password'])
+		db.session.add(new_user)
+		db.session.commit()
+		print("done")
+		username=request.form['username']
+		password=request.form['password']
+		data = User.query.filter_by(username=username, password=password).first()
+		try:
+			data = User.query.filter_by(username=username, password=password).first()
+			if data is not None:
+                # insert into redis hash name logged in this
+                # userame indicating that he is online and available for chatting
+                # Add the username to the session
+				session["username"] = username
+				redis_store.rpush("logged_in_users", username)
+				
+				return redirect(url_for("start_chat"))
+			else:
+				print('Wrong Details')
+				return render_template("register.html") 
+		except:
+			return "Dont Login"
+	else:
+		return render_template("register.html")    
+
+@app.route('/login', methods = ["GET", "POST"])
+def login():
+
+    if request.method == "GET":
+        return render_template("login.html")
+    
+    else:
+        # login logic
+        username = request.form['username']
+        password = request.form['password']
+        try:
+            data = User.query.filter_by(username=username, password=password).first()
+            if data is not None:
+                # insert into redis hash name logged in this
+                # userame indicating that he is online and available for chatting
+
+                # Add the username to the session
+                session["username"] = username
+
+                redis_store.rpush("logged_in_users", username)
+                
+                return redirect(url_for("start_chat"))
+            else:
+                print('Wrong Details')
+                return redirect(url_for('register'))
+        except:
+            return "Dont Login"
+
+
+@app.route("/logout", methods = ["GET"])
+def logout():
+
+    try:
+        session["username"]
+    except:
+        return "404!!! First Login then logout Monjjunath!!"
+
+    username = session['username']
+    
+    # clear session
+    session['username'] = ''
+
+    # remove from redis
+    redis_store.lrem("logged_in_users", username)
+
+    return redirect(url_for("index"))
+
+@app.route('/data')
+def get_session():
+
+    return "session['username']: " +  str(session['username']) + '\n' + "logged_in_users: " + str(redis_store.lrange('logged_in_users', 0, -1))
+
+@app.route("/start_chat", methods = ["GET"])
+def start_chat():
+    try:
+        session["username"]
+    except:
+        return redirect(url_for("login"))
+
+    if session["username"]:
+        list_of_users = []
+        
+        for user in redis_store.lrange('logged_in_users', 0, -1):
+            if(session['username'] != user.decode()):
+                list_of_users.append(user.decode())
+
+        return render_template("pretty_chat.html", users = list_of_users)
+    else:
+        return redirect(url_for("login"))
+
+
+@socketio.on('message', namespace='/chat')
+def chat_message(message):
+    message['from'] = session['username']
+    print('chat_message: ', message)
+    emit('message', message, broadcast = True, room = redis_store.hget("chat_room", message['to']).decode())
+
+@socketio.on('connect', namespace='/chat')
+def test_connect():
+    print("connect")
+    emit('my response', {'data': 'Connected', 'count': 0})
+
+@socketio.on('my_connection', namespace='/chat')
+def my_connection(data):
+    # add mapping of username and request.sid to redis
+    # name of the hash:  
+    # chat_room
+
+    redis_store.hset("chat_room", session["username"], request.sid)
+    print('my_connection')
+    print(data)
 
 @app.route('/results', methods=["POST"])
 def results():
@@ -38,5 +228,8 @@ def get_depr_results():
 	return route_depr_results(answers)
 
 
+
+
 if (__name__ == "__main__"):
-    app.run(debug=True)
+    db.create_all()
+    socketio.run(app, host="0.0.0.0", debug=True)
