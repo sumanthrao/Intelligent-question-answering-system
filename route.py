@@ -23,6 +23,8 @@ def route_result():
         
         results = indicoio.emotion(output)
 
+        print("results: ", results)
+
         emotions = {
             "surprise": 0,
             "sadness": 0,
@@ -39,7 +41,11 @@ def route_result():
         for emotion in emotions:
             emotions[emotion] /= len(output)
         
+        print("emotions: ", emotions)
+        
         dominant_emotion = max(emotions, key = lambda x: emotions[x])
+
+        print("dominant_emotion", dominant_emotion)
 
         ret = {
             "fear": {
