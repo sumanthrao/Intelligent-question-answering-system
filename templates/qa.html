@@ -390,10 +390,9 @@ label .glyphicon {
 <body>
 
   <div class="info">
-  <h1>How are you feeling today?</h1>
+  <h1>Mood Analyser</h1>
   <span>
-    
-    <i class="fa fa-beer"></i>
+    These are a bunch of questions to analyse what you are thinking!
   </span>
 </div>
 
@@ -430,12 +429,14 @@ label .glyphicon {
 
     <div class="quiz" id="quiz" data-toggle="buttons">
         {% for options in question[1:] %}
-        <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span> <input type="radio" name="{{loop.counter}}" value="{{question[0]}}:{{options}}">{{options}}</label>
+        <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
+             <input type="radio" name="{{question[0]}}" value="{{question[0]}}:{{options}}">{{options}}</label>
+        
         {% endfor %}
     </div>
   
     <!-- End Total Number of Constituents in Your Database Field -->
-    <input  data-page="1" name="next" class="next action-button" value="Next" />
+    <input style="display:none;" id ='{{question[0]}}' data-page="1" name="next" class="next action-button" value="Next" />
     <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i class="question-log fa fa-question-circle"></i> What Is This?</div>
   </fieldset>
 
@@ -472,7 +473,8 @@ label .glyphicon {
           var name=$(this).find('input:radio').attr('name');
           arr.push(choice)
           console.log(choice);
-          
+          console.log(name);
+          document.getElementById(name).style.display='block'
           //This obj is the list of answers!!
       
         });
