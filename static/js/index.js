@@ -39,9 +39,9 @@ var sts = [
 	/*[4]*/
 	'',
 	/*[5]*/
-	'What we actually need is about yourself._^',
+	'What we actually need is for you to talk about yourself._^',
 	/*[6]*/
-	'Please use the space below to talk about anyting you want share right now...>. ',
+	'Please use the space below to talk about anything you want to share with us...>. ',
 	/*[7]*/
 	'',
 	/*[8]*/
