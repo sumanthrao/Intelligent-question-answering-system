@@ -429,7 +429,7 @@ label .glyphicon {
 
     <div class="quiz" id="quiz" data-toggle="buttons">
         {% for options in question[1:] %}
-        <label class="element-animation1 btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
+        <label class="element-animation{{loop.index+1}} btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
              <input type="radio" name="{{question[0]}}" value="{{question[0]}}:{{options}}">{{options}}</label>
         
         {% endfor %}
