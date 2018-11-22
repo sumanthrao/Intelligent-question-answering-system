@@ -59,7 +59,7 @@ def route_result():
 
         #output.append(thoughts)
 
-    return render_template("result.html",output=verdict,emotion=combined_emotion)
+    return render_template("result_pre.html",output=verdict,emotion=combined_emotion)
 
 def route_question(questions):
     return render_template("qa.html",questions = questions)
@@ -102,7 +102,7 @@ def route_depr_results(answers):
         sad=i['sad']+sad
     verdict['happy']=happy/len(emotions)
     verdict['sad']=sad/len(emotions)
-    
+
     print(verdict)
     print(combined_emotion)
     
