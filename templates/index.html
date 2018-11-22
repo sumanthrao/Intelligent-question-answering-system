@@ -29,7 +29,7 @@
 				
 			  		$.ajax({
 							  type: "GET",
-							  url: "http://localhost:5001/suggest_emojis?text=" + text
+							  url: "http://192.168.0.21:5001/suggest_emojis?text=" + text
 						  }).done(function(o) {
 					$('#results').html("<div>Mood-o-meter</div></br>"+o);
 					console.log("done")
@@ -134,22 +134,22 @@
 							</p>
 							<p id="pin_2"></p>
 							<p>
-								<input id="email_address" name ="email" type="text" class="sleep" autocomplete="off" spellcheck="false" />
+								<input id="email_address" name ="email" type="text" onkeypress="getemo(this.value)" class="sleep" autocomplete="off" spellcheck="false" />
 							</p>
 							<p id="pin_3"></p>
 							<p>
-								<input id="your_color" name="color" type="text" class="sleep" autocomplete="off" spellcheck="false" />
+								<input id="your_color" name="color" type="text"  onkeypress="getemo(this.value)" class="sleep" autocomplete="off" spellcheck="false" />
 							</p>
 							<p id="pin_4"></p>
 							<p id="pin_5"></p>
 							<p id="pin_6"></p>
-							<p id="type" contenteditable="true" name="thoughts" class="sleep">Feel free to use <b>bold (Ctrl-B)</b>, <i>italics (Ctrl-I),</i> even <u>underlines (Ctrl-U)</u> if you must..</p>
-							<p id="pin_7"></p>
+							<input id="type" name="thoughts"  type='text' onkeypress="getemo(this.value)" class="sleep"></input>
+								<p id="pin_7"></p>
 				
 							
 							<p id="pin_8"></p>
 							<p id="pin_9"></p>
-							<input id="go" class="sleep" type="submit" value="send us your pitch" />
+							<input id="go" class="sleep"  type="submit" value="send us your pitch" />
 						</form>
 						  
 						<script  src="{{url_for('static',filename='js/index.js')}}"></script>
