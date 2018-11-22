@@ -44,13 +44,13 @@
 			}
 			else {
 				console.log('came')
-				
+				chat = "chat"
 				$(document).ready(function(){
 
 				
 			  		$.ajax({
 							  type: "GET",
-							  url: "http://192.168.0.21:5001/suggest_emojis?text=" + text
+							  url: "http://192.168.0.21:5001/suggest_emojis?text=" + text +"&chat="+ chat
 						  }).done(function(o) {
 					$('#results').html("<div>"+o+"</div></br>");
 					console.log("done")
