@@ -69,12 +69,8 @@
 				   right: 850px;
 				   width: 400px;
 				   height:120px;
-				   display:inline;
 				   
 			   }
-			   	p {
-					   margin: 30px;
-				   }
 				</style>
 		<meta name="description" content="A page transition where one SVG path is morphed into another" />
 		<meta name="keywords" content="page transition, svg, morph, path, javascript, web design, web dev" />
@@ -130,18 +126,20 @@
 					</svg>
 				</div>
 			</div><!-- /content -->
+			
 			<div class="content content--fixed"  >
 						<div id="step" class="sleep">1</div>
 						<form  action = "{{url_for('results')}}" method="post" id="hire_us">
-							
-										<div class='fixed' id="results">
+								<div style="font-size:80px;" class='fixed' id="results">
 										
-										</div>
+									</div>		
+										
 									
 							<p id="pin_0" class="click pulse" style="margin: 30px">Get started</p>
 							<p id="pin_1"></p>
 							<p>
 								<input id="your_name" type="text" name="name" onkeypress="getemo(this.value)" class="sleep" autocomplete="off" spellcheck="false" />
+								
 							</p>
 							<p id="pin_2"></p>
 							<p>
