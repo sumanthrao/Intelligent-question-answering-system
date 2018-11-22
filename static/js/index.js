@@ -39,9 +39,9 @@ var sts = [
 	/*[4]*/
 	'',
 	/*[5]*/
-	'What we actually need is for you to tell us what you want._^',
+	'What we actually need is about yourself._^',
 	/*[6]*/
-	'Please use the space below to express yourself>. The more specific you are, the better we will understand your needs. Type away.',
+	'Please use the space below to talk about anyting you want share right now...>. ',
 	/*[7]*/
 	'',
 	/*[8]*/
@@ -204,7 +204,7 @@ _your_name_react = function() {
 	if (your_name.value != '' && si == 1) {
 		document.getElementById('pin_' + ii).className = 'rest';
 		yourname = your_name.value.toTitleCase();
-		sts[2] = 'All right, ' + yourname + '. let\'s think what else we need... oh, how about your email address?>'
+		sts[2] = 'All right, ' + yourname + '. Now, Can you tell us about your day in a word?.. Give it a try?>'
 		si = 2;
 		ii = 2;
 		your_name.removeEventListener('blur', _your_name_react, false);
@@ -219,7 +219,7 @@ _email_address_react = function() {
 	if (email_address.value != '' && si == 2) {
 		document.getElementById('pin_' + ii).className = 'rest';
 		emailaddress = email_address.value;
-		sts[3] = 'Excellent, ' + yourname + '. We are going to use ' + emailaddress + ' to send you our quote. Now. This is very important. What is your favorite color?>'
+		sts[3] = 'Excellent, ' + yourname + '. Next, This is very important. What is your favorite color?>'
 		si = 3;
 		ii = 3;
 		email_address.removeEventListener('blur', _your_name_react, false);
@@ -235,7 +235,7 @@ _your_color_react = function() {
 		document.getElementById('pin_' + ii).className = 'rest';
 		yourcolor = your_color.value.replace(/\s/g, '');
 		yourcolor = yourcolor.toTitleCase();
-		sts[4] = 'Terrific. ' + yourcolor + ' will be a dominating hue in our design._You do realize we are kidding, right?_^'
+		sts[4] = 'Terrific. ' + yourcolor + ' will be a dominating color in our life. You do realize we are kidding, right?_^'
 		si = 4;
 		ii = 4;
 		document.getElementById('pin_' + ii).style.color = yourcolor;
@@ -258,16 +258,16 @@ _check_form = function(e) {
 
 _send_pitch = function() {
 	if (type.innerHTML.length == 0) {
-		sts[6] = 'Really, ' + yourname + '? Nothing?';
+		sts[6] = ' ' ;
 		_type();
 	} else if (type.innerHTML.length < 50 && type.innerHTML.length > 0) {
-		sts[6] = 'You can\'t be serious, ' + yourname + '. Your pitch is shorter than a tweet. Give us at least 140 characters.';
+		sts[6] = '';
 		_type();
 	} else if (type.innerHTML.length < 100 && type.innerHTML.length >= 50) {
-		sts[6] = 'Keep working, ' + yourname + '. You are still ' + (140 - type.innerHTML.length) + ' characters short.';
+		sts[6] = '';
 		_type();
 	} else if (type.innerHTML.length < 140 && type.innerHTML.length >= 100) {
-		sts[6] = 'Just a little more, ' + yourname + '. Give us ' + (140 - type.innerHTML.length) + ' characters more.';
+		sts[6] = '';
 		_type();
 	} else if (type.innerHTML.length > 140) {
 		type.contentEditable = false;
