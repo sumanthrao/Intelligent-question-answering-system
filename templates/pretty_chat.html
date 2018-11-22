@@ -52,7 +52,7 @@
 							  type: "GET",
 							  url: "http://192.168.0.21:5001/suggest_emojis?text=" + text
 						  }).done(function(o) {
-					$('#results').html("<div></div></br>"+o);
+					$('#results').html("<div>"+o+"</div></br>");
 					console.log("done")
 					});
 				});	
@@ -155,17 +155,16 @@
 								</div>
 								
 							</div>
-
-							<div class="input-group">
-									<div  id="results">
-									
-										</div>
-								</div>
 						</div>
+						
 					</div>
+					
 				</div>
 			</div>
-        </div>
+		</div>
+		<div class="card-footer" id="results">
+									
+		</div>
         <script src="/static/js/chat.js"></script>
 	</body>
 </html>
