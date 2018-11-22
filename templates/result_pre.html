@@ -24,6 +24,7 @@
 <title>Results</title>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="/static/css/button.css">
 <style>
 body,h1 {font-family: "Raleway", sans-serif}
 body, html {height: 100%}
@@ -52,7 +53,11 @@ body, html {
 
 }
 .bgimg-1 {
+<<<<<<< HEAD
   background-image: url("https://www.w3schools.com/w3images/forestbridge.jpg");
+=======
+  background-image: url('{{image}}');
+>>>>>>> aadfe4219da95c57ae1ed2f44a62b01ae63553d7
   height: 100%;
 }
 
@@ -95,13 +100,13 @@ h3 {
 
 .bg_sad {
     /* The image used */
-    background-image: "sad.png");
+    background-image: "sad.png";
 
     /* Full height */
     height: 100%; 
     text-align: center;
-  vertical-align: middle;
-  line-height: 90px; 
+    vertical-align: middle;
+    line-height: 90px; 
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
@@ -110,7 +115,7 @@ h3 {
 
 
  </style>
-<body onload="move()">
+<body onload="move1()">
     <script>
 
    
@@ -121,42 +126,27 @@ h3 {
         };
               </script>
         
-  {%if output['happy'] > 0.7 %}
      
 
 <div class="bgimg-1">
     <div class="w3-display-top">
-        <h2 style="padding:170px 0px 0px 0px " class="w3-jumbo w3-animate-top w3-text-white">You seem to be doing <span><b>fine</b></span>!</h2>
+        <p style="padding:170px 0px 0px 170px;" class="w3-jumbo w3-animate-top w3-text-white">{{data['title']}}</p>
         
       </div>
     <div class="caption">
+<<<<<<< HEAD
       <span class="border">Do you want to chat with some like-minded people and have some good time?</span>
+=======
+      <h2><span class="border">{{data['quote']}}</span></h2>
+>>>>>>> aadfe4219da95c57ae1ed2f44a62b01ae63553d7
     </div>
   </div>
       
 
         
-  </div>
 
-  {% else %}
       
-<div class="bgimg-1">
-    <div class="w3-display-top">
-        <h2 style="padding:170px 0px 0px 0px " class="w3-jumbo w3-animate-top w3-text-white">You seem to be Feeling <span><b>Sad</b></span> today?</h2>
-        
-      </div>
-    <div class="caption">
-      <span class="border">Don't worry, Remember...</span>
-      <span class="border">Your mind will take the shape of what you frequently hold in thought</span>
-      <span class="border"> for the human spirit is colored by such impressions.</span>
-    </div>
-    <a href="{{url_for('depression_questions')}}"> Start with the depression question</a>
 
-  </div>
-  
-  
-    
-  </div>
 
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -215,27 +205,14 @@ h3 {
 
      
   </div>
-  {%endif%}
+  
 
 
 
     <div id='resultsdiv' >
-                <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;color:brown; text-align: center">Your emotion %</h2>
-                <div style="margin-left: 50px;"id="donutchart">
+                <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;color:brown; text-align: center"></h2>
+                <div style="margin-left: 400px;"id="donutchart">
                 </div>
-
-        <div style="margin-right: 700px; margin-left:100px;margin-top: 50px;" >
-        <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;color:brown;">Happy</h2>
-        <div style="width:100%; height:4%;" class="w3-light-grey">
-
-        <div id="myBar" class="w3-container w3-green" style="width:0%;height:100%;align-self: center;">0%</div>
-        </div>
-        <br>
-        <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;color:brown;">Sad</h2>
-        <div style="width:100%; height:4%;" class="w3-light-grey">
-
-        <div id="myBar1" class="w3-container w3-red" style="width:0%; height:100%">0%</div>
-        </div>
 </div>
 
 
@@ -257,42 +234,11 @@ function show(){
 
 
 
-function move() {
-  var elem = document.getElementById("myBar");   
-  var width = 0;
-  var id = setInterval(frame, 10);
-  num="{{output['happy']}}"*100;
-  function frame() {
-    if (width >=num) {
-      clearInterval(id);
-    } else {
-      width++; 
-      elem.style.width = width + '%'; 
-      elem.innerHTML = width * 1  + '%';
-    }
-  }
-  move1();
-}
+
 
 
 function move1() {
-  var elem1 = document.getElementById("myBar1");   
-  var width = 0;
-  var id2 = setInterval(frame1, 10);
-  num1="{{output['sad']}}"*100
-
-  function frame1() {
-    if (width >= num1) {
-      clearInterval(id2);
-    } else {
-      width++; 
-      elem1.style.width = width + '%'; 
-      elem1.innerHTML = width * 1  + '%';
-    }
-  }
-  // Load google charts
-  var anger="{{emotion[0]['anger']}}"*100;
-console.log(anger);
+  
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
@@ -320,6 +266,7 @@ function drawChart() {
 
 
 </script>
-
+<a href = "/depression_questions"><div class="btn from-bottom" style="width: 100%; font-size: 5em"> Depression Test?? </div></a> <br/>
+<a href = "/start_chat"><div class="btn from-bottom" style="width: 100%; font-size: 5em"> Chat </div></a> <br/>
 </body>
 </html>
