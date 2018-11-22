@@ -7,6 +7,8 @@
 
   
 </style>
+
+
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
@@ -388,9 +390,9 @@ label .glyphicon {
 <body>
 
   <div class="info">
-  <h1>Questionnaire</h1>
+  <h1>How are you feeling today?</h1>
   <span>
-    How are you feeling today?
+    
     <i class="fa fa-beer"></i>
   </span>
 </div>
@@ -403,18 +405,23 @@ label .glyphicon {
   <div class="modal-content">
     <h2 class="fs-title">Depressions analysis</h2>
     <h3 class="fs-subtitle">Getting the most out of your data</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce convallis consectetur ligula. Morbi dapibus tellus a ipsum sollicitudin aliquet. Phasellus id est lacus. Pellentesque a elementum velit, a tempor nulla. Mauris mauris lectus, tincidunt et purus rhoncus, eleifend convallis turpis. Nunc ullamcorper bibendum diam, vitae tempus dolor hendrerit iaculis. Phasellus tellus elit, feugiat vel mi et, euismod varius augue. Nulla a porttitor sapien. Donec vestibulum ac nisl sed bibendum. Praesent neque ipsum, commodo eget venenatis vel, tempus sit amet ante. Curabitur vel odio eget urna dapibus imperdiet sit amet eget felis. Vestibulum eros velit, posuere a metus eget, aliquam euismod purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+    <p>iaculis. Phasellus tellus elit, feugiat vel mi et, euismod varius augue. Nulla a porttitor sapien. Donec vestibulum ac nisl sed bibendum. Praesent neque ipsum, commodo eget venenatis vel, tempus sit amet ante. Curabitur vel odio eget urna dapibus imperdiet sit amet eget felis. Vestibulum eros velit, posuere a metus eget, aliquam euismod purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
     <input type="button" name="next" class="next action-button modal-close" value="Got it!">
   </div>
 </div>
 </div>
-
 <form class="steps" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="">
-  <ul id="progressbar">
-    
-  </ul>
+  
 
 
+    <ul id="progressbar" style='width:100%;'>
+            <li class='active'></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>  
+          </ul> 
 
   <!-- USER INFORMATION FIELD SET --> 
   {% for question in questions %}
@@ -428,7 +435,7 @@ label .glyphicon {
     </div>
   
     <!-- End Total Number of Constituents in Your Database Field -->
-    <input id="submit" type="submit" data-page="1" name="next" class="next action-button" value="Next" />
+    <input  data-page="1" name="next" class="next action-button" value="Next" />
     <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i class="question-log fa fa-question-circle"></i> What Is This?</div>
   </fieldset>
 
@@ -439,9 +446,8 @@ label .glyphicon {
   <fieldset>
 
     <h2 class="fs-title">That's great! You are done!</h2>
-    <h3 class="fs-subtitle"> Your score and analysis</h3>
-    <input type="button" name="Get Results" class="next action-button" value="Submit"/>
-    <a id="mysubmit" class="tabs" href="#" >Get my results</a>
+    <h3 class="fs-subtitle"> </h3>
+    <a id="mysubmit" class="tabs"  href="#" >Get my results</a>
     
     <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3">What Is This?</div>
   </fieldset>
@@ -473,6 +479,7 @@ label .glyphicon {
 
         $(".tabs").click(function() {
             var json = JSON.stringify( arr );
+            console.log("here")
             $(this).attr("href","\get_depr_results?array="+json);
             window.location=document.getElementById('mysubmit').href;
         });

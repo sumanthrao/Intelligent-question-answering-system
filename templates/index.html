@@ -1,9 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 	<head>
+
+
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+			</script>
+		<script type="text/javascript">
+		timer = null;
+		function getemo(text){
+					if(timer){
+						clearTimeout(timer);
+					}
+					console.log("here")	
+					timer=setTimeout(function() {
+					emo(text);}, 1000)
+				
+				}
+		  function emo(text) {
+			if(text == ""){
+			  $('#results').html("");
+			  console.log('came')
+			}
+			else {
+				console.log('came')
+				
+				$(document).ready(function(){
+
+				
+			  		$.ajax({
+							  type: "GET",
+							  url: "http://localhost:5001/suggest_emojis?text=" + text
+						  }).done(function(o) {
+					$('#results').html(o);
+					console.log("done")
+					});
+				});	
+			  }
+		  }
+		</script>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Emotionizer</title>
+		<style>
+				div.fixed {
+				   position: fixed;
+				   bottom: 180px;
+				   right: 850px;
+				   width: 400px;
+				   height:120px;
+				   border: 3px solid black;
+			   }
+				</style>
 		<meta name="description" content="A page transition where one SVG path is morphed into another" />
 		<meta name="keywords" content="page transition, svg, morph, path, javascript, web design, web dev" />
 		<meta name="author" content="Codrops" />
@@ -15,7 +62,7 @@
 		<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}"/>
 		<script>document.documentElement.className = 'js';</script>
 	</head>
-	<body class="demo-1 loading">
+	<body class="demo-1 loading" onload="getemo('happy')">
 		<svg class="hidden">
 			<symbol id="icon-arrow" viewBox="0 0 24 24">
 				<title>arrow</title>
@@ -55,13 +102,16 @@
 					</svg>
 				</div>
 			</div><!-- /content -->
-			<div class="content content--fixed" >
+			<div class="content content--fixed"  >
 						<div id="step" class="sleep">1</div>
 						<form  action = "{{url_for('results')}}" method="post" id="hire_us">
+								<div class="fixed" id="results">
+										heyy
+									</div>
 							<p id="pin_0" class="click pulse">Get started</p>
 							<p id="pin_1"></p>
 							<p>
-								<input id="your_name" type="text" name="name" class="sleep" autocomplete="off" spellcheck="false" />
+								<input id="your_name" type="text" name="name" onkeypress="getemo(this.value)" class="sleep" autocomplete="off" spellcheck="false" />
 							</p>
 							<p id="pin_2"></p>
 							<p>

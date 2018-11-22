@@ -102,6 +102,7 @@ def route_depr_results(answers):
         sad=i['sad']+sad
     verdict['happy']=happy/len(emotions)
     verdict['sad']=sad/len(emotions)
+    
     print(verdict)
     print(combined_emotion)
     
