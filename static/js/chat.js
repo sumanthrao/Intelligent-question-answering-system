@@ -4,6 +4,30 @@ var socket = io.connect('http://' + document.domain + ':' + location.port + chan
 
 chat_history = {}
 
+function new_chat(e) {
+    var username = e.children[0].value;
+
+    try {
+        chatWith;
+        history[chatWith] = document.getElementById("message_body").innerHTML;
+    }
+    catch(err) {
+    }
+    chatWith = username;
+    $('.user').removeClass("active");
+    e.classList.add("active");
+    document.getElementById("message_head").classList.remove("hidden");
+    document.getElementById('uname').innerHTML = username;
+    
+    if(history[chatWith] === undefined) {
+        document.getElementById('message_body').innerHTML = "";
+    } else {
+        document.getElementById('message_body').innerHTML = history[chatWith];
+    }
+    document.getElementById('msg_to_send').value = "";
+    document.getElementById("card_footer").style.display = "block";
+}
+
 socket.on('connect', function() {
     socket.emit('my_connection', {data: 'I\'m connected!'});
 });
@@ -38,7 +62,29 @@ socket.on("message", function (message) {
             history[message.from] += new_message;
         }
 
-        alert("chat recieved from " + message.from);
+        //alert("chat recieved from " + message.from);
+        swal({
+            title: 'Incoming chat',
+            text: "Received message from " + message.from,
+            type: '',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Open Chat'
+          }, function(result) {
+            console.log(result);
+            if (result) {
+                var available_users = document.querySelectorAll("li");
+                for(var i = 0; i < available_users.length; ++i) {
+                    console.log(available_users[i].children[0].value)
+                    if(available_users[i].children[0].value == message.from) {
+                        console.log(available_users[i]);
+                        new_chat(available_users[i]);
+                        break;
+                    }
+                }
+            }
+          });
     }
     
 
@@ -56,29 +102,6 @@ $(document).ready(function() {
     });
 });
 
-function new_chat(e) {
-    var username = e.children[0].value;
-
-    try {
-        chatWith;
-        history[chatWith] = document.getElementById("message_body").innerHTML;
-    }
-    catch(err) {
-    }
-    chatWith = username;
-    $('.user').removeClass("active");
-    e.classList.add("active");
-    document.getElementById("message_head").classList.remove("hidden");
-    document.getElementById('uname').innerHTML = username;
-    
-    if(history[chatWith] === undefined) {
-        document.getElementById('message_body').innerHTML = "";
-    } else {
-        document.getElementById('message_body').innerHTML = history[chatWith];
-    }
-    document.getElementById('msg_to_send').value = "";
-    document.getElementById("card_footer").style.display = "block";
-}
 
 function send_message() {
     var message = $("#msg_to_send")[0].value
