@@ -14,7 +14,7 @@ def results():
 	return route_result()
 
 @app.route('/depression_questions', methods=["GET"])
-def get_questions():
+def depression_questions():
 	#Your mind will take the shape of what you frequently hold in thought,
 	# for the human spirit is colored by such impressions.
 	

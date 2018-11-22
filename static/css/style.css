@@ -24,7 +24,7 @@ body {
 	font-family: Montserrat, sans-serif;
 	margin: 2rem;
 	color: hsl(0, 0%, 0%);
-	background: hsl(331, 26%, 45%);
+	background: hsl(195, 80%, 60%);
 }
 
 #step {
@@ -34,7 +34,7 @@ body {
 	right: 1vw;
 	font-size: 60vh;
 	font-weight: 700;
-	color: hsl(330, 25%, 15%);
+	color: hsl(330, 85%, 95%);
 	-webkit-transition: 2s;
 	transition: 2s;
 }
@@ -95,8 +95,8 @@ p {
 }
 
 [contenteditable] {
-	color: hsl(330, 10%, 50%);
-	border: 0 solid hsl(330, 10%, 50%);
+	color: hsl(189, 60%, 2%);
+	border: 0 solid hsl(0, 10%, 50%);
 	border-width: 0 .1rem;
 	padding: 0 1em;
 	-webkit-transition: 1s ease-out;
@@ -104,22 +104,22 @@ p {
 }
 
 [contenteditable]:focus {
-	color: hsl(30, 100%, 75%);
-	border-color: hsl(330, 10%, 50%);
+	color: hsl(189, 60%, 98%);
+	border-color: hsl(189, 60%, 98%);
 }
 
 input[type=button] {
 	position: relative;
 	top: 0rem;
 	font-family: Montserrat, sans-serif;
-	font-size: 2rem;
-	font-weight: 700;
+	font-size: 1rem;
+	font-weight: 100;
 	color: hsl(330, 10%, 25%);
 	background: transparent;
-	border: .2rem solid hsl(330, 10%, 25%);
+	border: .1rem solid hsl(330, 10%, 25%);
 	border-radius: .75rem;
-	padding: 0.5rem 1rem;
-	box-shadow: 0 0 0 hsl(330, 10%, 5%);
+	padding: 0.5rem 0.5rem;
+	box-shadow: 0 0 0 hsl(330, 40%, 50%);
 	-webkit-transition: 1s ease-out;
 	transition: 1s ease-out;
 	cursor: pointer;
@@ -127,8 +127,8 @@ input[type=button] {
 
 input[type=button]:hover {
 	top: -.5rem;
-	color: hsl(30, 100%, 75%);
-	border: .2rem solid hsl(30, 100%, 75%);
+	color: hsl(60, 60%, 30%);
+	border: .2rem solid hsl(60, 60%, 50%);
 	box-shadow: 0 .5rem 0.5rem hsl(330, 10%, 5%);
 }
 
@@ -137,7 +137,7 @@ input[type=email] {
 	font-family: Montserrat, sans-serif;
 	font-size: 1.5rem;
 	line-height: 2.5rem;
-	color: hsl(30, 100%, 75%);
+	color: hsl(30, 100%, 10%);
 	background: transparent;
 	border: 0 solid hsl(330, 10%, 25%);
 	border-width: 0 0 .1rem 0;
