@@ -108,7 +108,7 @@ p {
 	border-color: hsl(189, 60%, 98%);
 }
 
-input[type=button] {
+input[type=submit] {
 	position: relative;
 	top: 0rem;
 	font-family: Montserrat, sans-serif;

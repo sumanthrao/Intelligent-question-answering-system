@@ -16,20 +16,21 @@ body {
 
 /* Color schemes */
 .demo-1 {
+	
+	
 	--color-text: #fff;
 	--color-link: #5f5f5f;
 	--color-link-hover: #ff963b;
 	--color-enter: #fff;
 	--color-title: #fff;
 	--color-subtitle: #5f5f5f;
-	--color-menu-item: #000;
+	--color-menu-item:darkblue;
 	--color-menu-item-hover: #ff963b;
 	--color-menu-item-hover-alt: #8544da;
-	--color-content: #222325;
-	--color-content-fixed: #ddd;
+	--color-content:white;
+	--color-content-fixed:skyblue;
 	--font-alt: 200 6vw/1 'Spectral', serif;
-	--color-next: #5f5f5f;
-	--color-next-hover: #8544da;
+	
 }
 
 .demo-2 {
@@ -283,8 +284,14 @@ main {
 	background-size: cover;
 }
 
-.demo-1 .content--fixed {
-	background-color: hsl(331, 26%, 45%);
+.demo-1 
+{
+	background-color: var(--color-content-fixed);
+}
+.content--fixed {
+	background-color: var(--color-content-fixed);
+	
+
 }
 
 .demo-2 .content--fixed {
@@ -311,8 +318,13 @@ main {
 	justify-content: center;
 }
 
-.content--intro .content__inner {
-	background: var(--color-content);
+.content--intro {
+	background-color: var(--color-content-fixed);
+}
+
+.content__inner {
+	background-image: url(../img/b.jpg);
+	
 }
 
 .content h2 {
@@ -476,7 +488,7 @@ main {
 		margin: 0;
 	}
 	.content--intro .content__inner,
-	.demo-4 .content__inner {
+	.demo-1 .content__inner {
 		padding-top: 12em;
 	}
 	.content__title {
