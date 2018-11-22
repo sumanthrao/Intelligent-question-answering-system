@@ -23,13 +23,14 @@
 				console.log('came')
 				
 				$(document).ready(function(){
-
+					chat="no"
 				
 			  		$.ajax({
 							  type: "GET",
-							  url: "http://192.168.0.21:5001/suggest_emojis?text=" + text
+							  url: "http://192.168.0.21:5001/suggest_emojis?text=" + text+"&chat="+chat
 						  }).done(function(o) {
-					$('#results').html("<div></div></br>"+o);
+					console.log(o);
+					$('#results').html(o);
 					console.log("done")
 					});
 				});	
@@ -62,12 +63,13 @@
 				  height: 100%;
 				}
 				
-				div.fixed {
+				div .fixed {
 				   position: fixed;
 				   bottom: 180px;
 				   right: 850px;
 				   width: 400px;
 				   height:120px;
+				   display:inline;
 				   
 			   }
 			   	p {
@@ -77,7 +79,7 @@
 		<meta name="description" content="A page transition where one SVG path is morphed into another" />
 		<meta name="keywords" content="page transition, svg, morph, path, javascript, web design, web dev" />
 		<meta name="author" content="Codrops" />
-		<link rel="shortcut icon" href="favicon.ico">
+	
 		<link href="https://fonts.googleapis.com/css?family=Nunito:400,700|Spectral:200" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/normalize.css')}}" />
 		<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/demo.css')}}" />
@@ -131,10 +133,11 @@
 			<div class="content content--fixed"  >
 						<div id="step" class="sleep">1</div>
 						<form  action = "{{url_for('results')}}" method="post" id="hire_us">
-								<div class="fixed" id="results">
-										
-									</div>
 							
+										<div class='fixed' id="results">
+										
+										</div>
+									
 							<p id="pin_0" class="click pulse" style="margin: 30px">Get started</p>
 							<p id="pin_1"></p>
 							<p>
