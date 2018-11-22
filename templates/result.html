@@ -1,4 +1,4 @@
-<h1 style="text-align: center;color: black;font-family: fantasy;">Welcome to the Results!</h1>
+<!-- <h1 style="text-align: center;color: black;font-family: fantasy;">Welcome to the Results!</h1> -->
 
 <!DOCTYPE html>
 
@@ -16,8 +16,18 @@
 
   </head>
 <title>Results</title>
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+    background-color: black;
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+</style>
 
 <style>
 body, html {
@@ -29,14 +39,14 @@ body, html {
 
 .bgimg-1, .bgimg-2, .bgimg-3 {
   position: relative;
-  opacity: 0.65;
+  opacity: 1;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
 }
 .bgimg-1 {
-  background-image: url("https://www.w3schools.com/howto/img_parallax.jpg");
+  background-image: url("https://www.w3schools.com/w3images/forestbridge.jpg");
   height: 100%;
 }
 
@@ -44,7 +54,8 @@ body, html {
   position: absolute;
   left: 0;
   top: 50%;
-  width: 100%;
+  width: 50%;
+  align-content: center;
   text-align: center;
   color: #000;
 }
@@ -52,7 +63,7 @@ body, html {
 .caption span.border {
   background-color: #111;
   color: #fff;
-  padding: 18px;
+  padding: 2px;
   font-size: 25px;
   letter-spacing: 10px;
 }
@@ -118,17 +129,62 @@ h3 {
 
         
   </div>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+    
+    <div class="w3-display-middle">
+      <h1 class="w3-jumbo w3-animate-top">COMING SOON</h1>
+      <hr class="w3-border-grey" style="margin:auto;width:40%">
+      <p class="w3-large w3-center">35 days left</p>
+    </div>
+    <div class="w3-display-bottomleft w3-padding-large">
+     </div>
+  </div>
   {% else %}
       
 <div class="bgimg-1">
+    <div class="w3-display-top">
+        <h2 style="padding:170px 0px 0px 0px " class="w3-jumbo w3-animate-top w3-text-white">You seem to be Feeling <span><b>Sad</b></span> today?</h2>
+        
+      </div>
     <div class="caption">
-      <span class="border">Feeling Sad? </span><br>
-      <span class="border">Don't worry</span>
+      <span class="border">Don't worry, Remember...</span>
+      <span class="border">Your mind will take the shape of what you frequently hold in thought</span>
+      <span class="border"> for the human spirit is colored by such impressions.</span>
     </div>
   </div>
   
   
     
+  </div>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+   
+    <div class="w3-display-middle">
+      <h1 class="w3-xxlarge w3-animate-top">You scored <span>
+        {%if output['happy'] < 0.3 %}
+        23 out of 30
+        {%elif  output['happy'] < 0.6 %}
+        17 out of 30
+        {%else %}
+        12 out of 30
+        {%endif%}
+      </span>for depression in our analysis.Hang in there, dont panic!</h1>
+      <hr class="w3-border-grey" style="margin:auto;width:40%">
+      <p class="w3-large w3-center">
+          {%if output['happy'] < 0.3 %}
+          23 out of 30
+          {%elif  output['happy'] < 0.6 %}
+          17 out of 30
+          {%else %}
+          12 out of 30
+          {%endif%}
+
+      </p>
+    </div>
+<a href="{{url_for('depression_questions')}}"> Start with the depression question</a>
+    <div class="w3-display-bottomleft w3-padding-large">
+     </div>
   </div>
   {%endif%}
 
@@ -149,7 +205,6 @@ h3 {
         <div id="myBar1" class="w3-container w3-red" style="width:0%; height:100%">0%</div>
         </div>
 </div>
-<a href="{{url_for('depression_questions')}}"> Start with the depression question</a>
 
 </div>
 

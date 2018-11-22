@@ -284,7 +284,7 @@ main {
 }
 
 .demo-1 .content--fixed {
-	background-color: hsl(331, 26%, 45%);
+	background-color: hsl(331, 71%, 73%);
 }
 
 .demo-2 .content--fixed {
@@ -300,8 +300,8 @@ main {
 }
 
 .content__inner {
+	
 	width: 100%;
-	height: 100vh;
 	position: relative;
 	text-align: center;
 	display: flex;
