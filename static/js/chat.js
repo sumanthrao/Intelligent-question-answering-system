@@ -77,6 +77,7 @@ function new_chat(e) {
         document.getElementById('message_body').innerHTML = history[chatWith];
     }
     document.getElementById('msg_to_send').value = "";
+    document.getElementById("card_footer").style.display = "block";
 }
 
 function send_message() {
@@ -108,6 +109,7 @@ function send_message() {
                         })
 
     document.getElementById('msg_to_send').value = "";
+    document.getElementById('results').innerHTML = "";
 
 }
 
