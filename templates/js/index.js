@@ -204,7 +204,7 @@ _your_name_react = function() {
 	if (your_name.value != '' && si == 1) {
 		document.getElementById('pin_' + ii).className = 'rest';
 		yourname = your_name.value.toTitleCase();
-		sts[2] = 'All right, ' + yourname + '. let\'s think what else we need... oh, how about your email address?>'
+		sts[2] = 'All right, ' + yourname + '. let\'s think, can you summarise your day in a word.. give it a try?'
 		si = 2;
 		ii = 2;
 		your_name.removeEventListener('blur', _your_name_react, false);
@@ -219,7 +219,7 @@ _email_address_react = function() {
 	if (email_address.value != '' && si == 2) {
 		document.getElementById('pin_' + ii).className = 'rest';
 		emailaddress = email_address.value;
-		sts[3] = 'Excellent, ' + yourname + '. We are going to use ' + emailaddress + ' to send you our quote. Now. This is very important. What is your favorite color?>'
+		sts[3] = 'Excellent,you are doing very well so far ' + yourname + '. Now. This is very important. What is your favorite color?>'
 		si = 3;
 		ii = 3;
 		email_address.removeEventListener('blur', _your_name_react, false);

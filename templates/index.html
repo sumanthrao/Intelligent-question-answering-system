@@ -31,12 +31,21 @@
 							  type: "GET",
 							  url: "http://192.168.0.21:5001/suggest_emojis?text=" + text
 						  }).done(function(o) {
-					$('#results').html("<div>Mood-o-meter</div></br>"+o);
+					$('#results').html("<div></div></br>"+o);
 					console.log("done")
 					});
 				});	
 			  }
 		  }
+		
+		  function handle_thoughts(e) {
+				//console.log(e);
+				$('#mythoughts').val(e);
+				getemo(e);
+				//console.log("input box");
+				//console.log(document.getElementById("mythoughts").value);
+			}
+
 		</script>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,7 +72,9 @@
 				   height:120px;
 				   
 			   }
-			 
+			   	p {
+					   margin: 30px;
+				   }
 				</style>
 		<meta name="description" content="A page transition where one SVG path is morphed into another" />
 		<meta name="keywords" content="page transition, svg, morph, path, javascript, web design, web dev" />
@@ -78,7 +89,7 @@
 	</head>
 	<body    class="demo-1 loading" onload="getemo('happy')">
 	
-		<svg class="hidden">
+		<!-- <svg class="hidden">
 			<symbol id="icon-arrow" viewBox="0 0 24 24">
 				<title>arrow</title>
 				<polygon points="6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 "/>
@@ -91,7 +102,7 @@
 				<title>github</title>
 				<path d="M16.3,0C7.3,0,0,7.3,0,16.3c0,7.2,4.7,13.3,11.1,15.5c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1c1.6,0.1,2.5,1.7,2.5,1.7c1.5,2.5,3.8,1.8,4.7,1.4c0.1-1.1,0.6-1.8,1-2.2c-3.6-0.4-7.4-1.8-7.4-8.1c0-1.8,0.6-3.2,1.7-4.4C7.4,10.7,6.8,9,7.7,6.8c0,0,1.4-0.4,4.5,1.7c1.3-0.4,2.7-0.5,4.1-0.5c1.4,0,2.8,0.2,4.1,0.5c3.1-2.1,4.5-1.7,4.5-1.7c0.9,2.2,0.3,3.9,0.2,4.3c1,1.1,1.7,2.6,1.7,4.4c0,6.3-3.8,7.6-7.4,8c0.6,0.5,1.1,1.5,1.1,3c0,2.2,0,3.9,0,4.5c0,0.4,0.3,0.9,1.1,0.8c6.5-2.2,11.1-8.3,11.1-15.5C32.6,7.3,25.3,0,16.3,0z"/>
 			</symbol>
-		</svg>
+		</svg> -->
 		<main>
 			<div class="content content--intro">
 				<div class="frame">
@@ -123,11 +134,10 @@
 						<div id="step" class="sleep">1</div>
 						<form  action = "{{url_for('results')}}" method="post" id="hire_us">
 								<div class="fixed" id="results">
-										Mood-o-meter
+										
 									</div>
-				<span><img src="{{url_for('static',filename='img/find.png')}}"><p style="margin-left: 100px; display:inline;">Let's Find Out</p></span>
-							<p id="pin_0" class="click pulse">Get started</p>
-						
+							
+							<p id="pin_0" class="click pulse" style="margin: 30px">Get started</p>
 							<p id="pin_1"></p>
 							<p>
 								<input id="your_name" type="text" name="name" onkeypress="getemo(this.value)" class="sleep" autocomplete="off" spellcheck="false" />
@@ -143,13 +153,19 @@
 							<p id="pin_4"></p>
 							<p id="pin_5"></p>
 							<p id="pin_6"></p>
-							<input id="type" name="thoughts"  type='text' onkeypress="getemo(this.value)" class="sleep"></input>
-								<p id="pin_7"></p>
+							<p id="type" onkeyup="handle_thoughts(this.innerHTML)" contenteditable="true" name="thoughts" class="sleep" style="width:60%">Feel free to use <b>bold (Ctrl-B)</b>, <i>italics (Ctrl-I),</i> even <u>underlines (Ctrl-U)</u> if you must..</p>
+							
+							
+							<p id="pin_7"></p>
+								
 				
 							
 							<p id="pin_8"></p>
 							<p id="pin_9"></p>
-							<input id="go" class="sleep"  type="submit" value="send us your pitch" />
+							
+							<input id="mythoughts" type="text" style="display:none"/>
+
+							<input id="go" class="sleep" type="submit" value="send us your pitch" />
 						</form>
 						  
 						<script  src="{{url_for('static',filename='js/index.js')}}"></script>

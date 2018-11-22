@@ -295,15 +295,15 @@ main {
 }
 
 .demo-2 .content--fixed {
-	background-image: url(../img/bg2.jpg);
+	background-image: url(/static/img/bg2.jpg);
 }
 
 .demo-3 .content--fixed {
-	background-image: url(../img/bg3.jpg);
+	background-image: url(/static/img/bg3.jpg);
 }
 
 .demo-4 .content--fixed {
-	background-image: url(../img/bg4.jpg);
+	background-image: url(/static/img/bg4.jpg);
 }
 
 .content__inner {
@@ -323,7 +323,7 @@ main {
 }
 
 .content__inner {
-	background-image: url(../img/b.jpg);
+	background-image: url(/static/img/b.jpg);
 	
 }
 
