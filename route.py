@@ -2,6 +2,7 @@
 from flask import render_template, redirect, url_for, request, session, flash
 import json
 import indicoio
+import re
 indicoio.config.api_key = '72571b31b550e2f29f0ed2014ee5d968'
 
 
@@ -12,15 +13,17 @@ def route_result():
     if request.method == 'POST':
         
         thoughts = request.form['mythoughts']
-        
-        #day = request.form['day']
+        thoughts = re.sub('<br>', ' ', thoughts)
+        day = request.form['day']
         
         
         output=[]
         
         output.append(thoughts)
-        # output.append(day)
+        output.append(day)
         
+        print("output", output)
+
         results = indicoio.emotion(output)
 
         print("results: ", results)

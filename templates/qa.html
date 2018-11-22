@@ -392,7 +392,10 @@ label .glyphicon {
   <div class="info">
   <h1>Mood Analyser</h1>
   <span>
+      <h4>
     These are a bunch of questions to analyse what you are thinking!
+    </h4>
+
   </span>
 </div>
 
@@ -426,7 +429,7 @@ label .glyphicon {
   {% for question in questions %}
   <fieldset>
     <h2 class="fs-title" value="{{question[0]}}">{{question[0]}}</h2>
-
+    <br>
     <div class="quiz" id="quiz" data-toggle="buttons">
         {% for options in question[1:] %}
         <label class="element-animation{{loop.index+1}} btn btn-lg btn-primary btn-block"><span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
@@ -436,7 +439,7 @@ label .glyphicon {
     </div>
   
     <!-- End Total Number of Constituents in Your Database Field -->
-    <input style="display:none;" id ='{{question[0]}}' data-page="1" name="next" class="next action-button" value="Next" />
+    <input style="display:none;" type="button" id ='{{question[0]}}' data-page="1" name="next" class="next action-button" value="Next" />
     <div class="explanation btn btn-small modal-trigger" data-modal-id="modal-3"><i class="question-log fa fa-question-circle"></i> What Is This?</div>
   </fieldset>
 
