@@ -63,19 +63,19 @@
 		anime.remove(DOM.enterLetters);
 		anime({
 			targets: DOM.enterLetters,
-			delay: (t,i) => i*15,
+			delay: (t,i) => i*20,
 			translateY: [
-				{value: 10, duration: 150, easing: 'easeInQuad'},
-				{value: [-10,0], duration: 150, easing: 'easeOutQuad'}
+				{value: 10, duration: 200, easing: 'easeInQuad'},
+				{value: [-10,0], duration: 200, easing: 'easeOutQuad'}
 			],
 			opacity: [
-				{value: 0, duration: 150, easing: 'linear'},
-				{value: 1, duration: 150, easing: 'linear'}
+				{value: 0, duration: 200, easing: 'linear'},
+				{value: 1, duration: 200, easing: 'linear'}
 			],
 			color: {
 				value: '#ff963b',
 				duration: 1,
-				delay: (t,i,l) => i*15+150
+				delay: (t,i,l) => i*20+150
 			}
 		});
 	}, 50);
