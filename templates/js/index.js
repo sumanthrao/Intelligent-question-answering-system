@@ -204,7 +204,7 @@ _your_name_react = function() {
 	if (your_name.value != '' && si == 1) {
 		document.getElementById('pin_' + ii).className = 'rest';
 		yourname = your_name.value.toTitleCase();
-		sts[2] = 'All right, ' + yourname + '. let\'s think, can you summarise your day in a word.. give it a try?'
+		sts[2] = 'All right, ' + yourname + '. Next, can you summarise your day in a word.. give it a try?'
 		si = 2;
 		ii = 2;
 		your_name.removeEventListener('blur', _your_name_react, false);
